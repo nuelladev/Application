@@ -1,16 +1,20 @@
 package com.example.myjobapp.job;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JobServiceImpl implements JobService {
+    private List <Job> jobs = new ArrayList<>();
 
     @Override
     public List<Job> findAll() {
-        return null;
+
+        return jobs;
     }
 
     @Override
-    public void createJob() {
+    public void createJob(Job job) {
+        jobs.add(job);
 
     }
 }
