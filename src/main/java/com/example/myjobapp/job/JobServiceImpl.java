@@ -1,8 +1,10 @@
 package com.example.myjobapp.job;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
-
+@Service
 public class JobServiceImpl implements JobService {
     private List <Job> jobs = new ArrayList<>();
 

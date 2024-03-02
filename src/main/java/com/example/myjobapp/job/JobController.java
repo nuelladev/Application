@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 @RestController
 public class JobController {
+    private JobService jobService;
     private List <Job> jobs = new ArrayList<>();
     @GetMapping("/jobs")
     public List<Job>findAll(){
-        return jobs;
+
+        return jobService.findAll();
     }
     @PostMapping("/jobs")
     public String createJobs(@RequestBody Job job){
