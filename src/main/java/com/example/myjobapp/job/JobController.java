@@ -10,6 +10,9 @@ import java.util.List;
 @RestController
 public class JobController {
     private JobService jobService;
+    public JobController(JobService jobservice) {
+        this.jobService = jobservice;
+    }
     private List <Job> jobs = new ArrayList<>();
     @GetMapping("/jobs")
     public List<Job>findAll(){
