@@ -31,10 +31,21 @@ public class JobController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     @DeleteMapping("/jobs/{id}")
-    public ResponseEntity<String> deleteJob(@PathVariable Long id){
+    public ResponseEntity<String> deleteJob(@PathVariable Long id) {
         boolean deleted = jobService.deleteJobById(id);
-        if (deleted)
+        if (deleted) {
             return new ResponseEntity<>("Job Deleted successfully!", HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    @PutMapping("/jobs/{id}")
+    public ResponseEntity<String> updateJob(@PathVariable Long id, @RequestBody Job updatedJob) {
+        boolean updated = jobService.updateJobById(id, updatedJob);
+        if (updated) {
+            return new ResponseEntity<>("Job Updated Successfully!", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
