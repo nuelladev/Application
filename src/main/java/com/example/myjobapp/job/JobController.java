@@ -21,7 +21,7 @@ public class JobController {
     }
     @PostMapping("/jobs")
     public String createJobs(@RequestBody Job job){
-        jobs.add(job);
+        jobService.createJob(job);
         return "congratulations! Job added successfully!";
     }
 }
