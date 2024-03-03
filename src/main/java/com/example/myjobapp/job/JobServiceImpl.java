@@ -3,6 +3,7 @@ package com.example.myjobapp.job;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 @Service
 public class JobServiceImpl implements JobService {
@@ -36,6 +37,14 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public Boolean deleteJobById(Long id) {
-        return null;
+        Iterator<Job> iterator = jobs.iterator();
+        while (iterator.hasNext()){
+            Job job = iterator.next();
+            if (job.getId().equals(id)){
+                iterator.remove();
+                return true;
+            }
+        }
+        return false;
     }
 }
