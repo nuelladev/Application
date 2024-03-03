@@ -9,6 +9,8 @@ public class JobServiceImpl implements JobService {
     private List <Job> jobs = new ArrayList<>();
     private Long nextId = 1L;
 
+    private Long id;
+
     @Override
     public List<Job> findAll() {
 
@@ -20,5 +22,15 @@ public class JobServiceImpl implements JobService {
         job.setId(nextId++);
         jobs.add(job);
 
+    }
+
+    @Override
+    public Job getJobById(Long id) {
+        for(Job job: jobs) {
+            if (job.getId().equals(id)){
+                return job;
+            }
+        }
+        return null;
     }
 }
