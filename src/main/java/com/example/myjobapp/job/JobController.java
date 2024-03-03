@@ -13,7 +13,7 @@ public class JobController {
     public JobController(JobService jobservice) {
         this.jobService = jobservice;
     }
-    private List <Job> jobs = new ArrayList<>();
+
     @GetMapping("/jobs")
     public List<Job>findAll(){
 
