@@ -1,4 +1,16 @@
 package com.example.myjobapp.company;
 
-public class CompanyServiceImpl {
+import java.util.List;
+
+public class CompanyServiceImpl implements CompanyService {
+private final CompanyRepository companyRepository;
+
+    public CompanyServiceImpl(CompanyRepository companyRepository) {
+        this.companyRepository = companyRepository;
+    }
+
+    @Override
+    public List getAllCompany() {
+        return companyRepository.findAll();
+    }
 }

@@ -14,10 +14,19 @@ public class Company {
     @OneToMany
     private List<Job> jobs;
 
+    public Company(Long id) {
+        this.id = id;
+    }
+
+    public Company() {
+    }
+
     public Company(Long id, String companyName, String description, List<Job> jobs) {
         this.id = id;
         this.companyName = companyName;
         this.description = description;
         this.jobs = jobs;
     }
+
+
 }
