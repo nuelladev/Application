@@ -1,7 +1,9 @@
 package com.example.myjobapp.company;
 
-import java.util.List;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+@Service
 public class CompanyServiceImpl implements CompanyService {
 private final CompanyRepository companyRepository;
 

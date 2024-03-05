@@ -4,6 +4,7 @@ import com.example.myjobapp.job.Job;
 import jakarta.persistence.*;
 
 import java.util.List;
+
 @Entity
 public class Company {
     @Id
