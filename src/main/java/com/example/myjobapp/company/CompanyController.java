@@ -1,24 +1,33 @@
 package com.example.myjobapp.company;
 
 import com.example.myjobapp.job.Job;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/companies")
 public class CompanyController {
-    private CompanyService companyService;
+
+    private final CompanyService companyService;
 
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
     }
-    public List <Company> getAllCompany(){
-        return companyService.getAllCompany();
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateCompany(@PathVariable Long id, @RequestBody Company updatedCompany) {
+        boolean isUpdated = companyService.updateCompany(updatedCompany, id);
+        if (isUpdated) {
+            return ResponseEntity.ok("Company updated successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
-@PutMapping
-    public ResponseEntity <String> updateCompany(PathVariable Long id, @RequestBody Company updatedCompany){
-        return companyService.company();
+
+    @PostMapping("/company")
+    public ResponseEntity<String> createCompany(@RequestBody Company company){
+        companyService.createCompany(company);
+        return new ResponseEntity<>("congratulations! Company added successfully!", HttpStatus.CREATED) ;
     }
 }

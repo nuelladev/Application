@@ -32,4 +32,9 @@ private final CompanyRepository companyRepository;
         }
         return false;
     }
+
+    @Override
+    public void createCompany(Company company) {
+        companyRepository.save(company);
+    }
 }
