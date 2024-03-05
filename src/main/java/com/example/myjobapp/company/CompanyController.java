@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/companies")
 public class CompanyController {
@@ -25,9 +27,15 @@ public class CompanyController {
         }
     }
 
-    @PostMapping("/company")
+    @PostMapping("/create")
     public ResponseEntity<String> createCompany(@RequestBody Company company){
         companyService.createCompany(company);
         return new ResponseEntity<>("congratulations! Company added successfully!", HttpStatus.CREATED) ;
+    }
+
+    @GetMapping
+    public ResponseEntity <List<Company>> findAll(){
+
+        return  ResponseEntity.ok(companyService.getAllCompany());
     }
 }
