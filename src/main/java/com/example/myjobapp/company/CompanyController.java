@@ -1,7 +1,8 @@
 package com.example.myjobapp.company;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.myjobapp.job.Job;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,5 +16,9 @@ public class CompanyController {
     }
     public List <Company> getAllCompany(){
         return companyService.getAllCompany();
+    }
+@PutMapping
+    public ResponseEntity <String> updateCompany(PathVariable Long id, @RequestBody Company updatedCompany){
+        return companyService.company();
     }
 }

@@ -1,8 +1,11 @@
 package com.example.myjobapp.company;
 
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class CompanyServiceImpl implements CompanyService {
 private final CompanyRepository companyRepository;
@@ -14,5 +17,19 @@ private final CompanyRepository companyRepository;
     @Override
     public List getAllCompany() {
         return companyRepository.findAll();
+    }
+
+    @Override
+    public boolean updateCompany(Company updatedCompany, Long id) {
+        Optional<Company> companyOptional = companyRepository.findById(id);
+        if (companyOptional.isPresent()) {
+            Company company = companyOptional.get();
+            company.setCompanyName(updatedCompany.getCompanyName());
+            company.setDescription(updatedCompany.getDescription());
+            company.setJobs(updatedCompany.getJobs());
+            companyRepository.save(company);
+            return true;
+        }
+        return false;
     }
 }
