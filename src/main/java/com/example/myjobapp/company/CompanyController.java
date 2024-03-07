@@ -1,6 +1,6 @@
 package com.example.myjobapp.company;
 
-import com.example.myjobapp.job.Job;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,5 +37,23 @@ public class CompanyController {
     public ResponseEntity <List<Company>> findAll(){
 
         return  ResponseEntity.ok(companyService.getAllCompany());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String>deleteCompanyById(@PathVariable Long id) {
+        boolean isDeleted = companyService.deleteCompanyById(id);
+        if (isDeleted) {
+            return new ResponseEntity<>("Company successfully deleted!",HttpStatus.OK );
+        } else {
+            return new ResponseEntity<>("Error! Company was not found!", HttpStatus.NOT_FOUND);
+        }
+    }
+    public ResponseEntity<Company>getCompanyById(@PathVariable Long id){
+        Company company = companyService.getCompanyById(id);
+        if (company != null) {
+            return new ResponseEntity<>(company, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
+        }
     }
 }
