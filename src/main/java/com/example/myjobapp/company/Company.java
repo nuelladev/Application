@@ -7,16 +7,24 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
+
 @Entity
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String companyName;
+    private String name;
     private String description;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "company")
     private List<Job> jobs;
+
+    @OneToMany(mappedBy = "company")
+    private List<Review> reviews;
+
+    public Company() {
+    }
 
     public List<Review> getReviews() {
         return reviews;
@@ -24,22 +32,6 @@ public class Company {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
-    }
-
-    private List<Review> reviews;
-
-    public Company(Long id) {
-        this.id = id;
-    }
-
-    public Company() {
-    }
-
-    public Company(Long id, String companyName, String description, List<Job> jobs) {
-        this.id = id;
-        this.companyName = companyName;
-        this.description = description;
-        this.jobs = jobs;
     }
 
     public Long getId() {
@@ -50,12 +42,12 @@ public class Company {
         this.id = id;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public String getName() {
+        return name;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {

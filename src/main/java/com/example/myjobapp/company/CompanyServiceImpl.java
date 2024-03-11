@@ -24,7 +24,7 @@ private final CompanyRepository companyRepository;
         Optional<Company> companyOptional = companyRepository.findById(id);
         if (companyOptional.isPresent()) {
             Company company = companyOptional.get();
-            company.setCompanyName(updatedCompany.getCompanyName());
+            company.setName(updatedCompany.getName());
             company.setDescription(updatedCompany.getDescription());
             company.setJobs(updatedCompany.getJobs());
             companyRepository.save(company);
