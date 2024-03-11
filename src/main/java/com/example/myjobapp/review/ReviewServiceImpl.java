@@ -16,6 +16,6 @@ public class ReviewServiceImpl implements ReviewService{
     public List<Review> getAllReviews(Long companyId) {
 
         List<Review>reviews = reviewRepository.findByCompanyId(companyId);
-        return null;
+        return reviews;
     }
 }
